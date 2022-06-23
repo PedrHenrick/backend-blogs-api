@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const SECRET = process.env.JWT_SECRET || 'bananinhaDePijaminha';
-const errorObjectInvalidToken = { status: 401, message: 'token inválido' };
+const errorObjectInvalidToken = { status: 401, message: 'Expired or invalid token' };
 
 const jwtConfig = {
   // expiresIn: '15m', //Dando um erro estranho
