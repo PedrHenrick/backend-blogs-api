@@ -1,8 +1,15 @@
 const joi = require('joi');
 
 const schemaLogin = joi.object({
-  email: joi.string().min(1).required(),
-  password: joi.string().min(1).required(),
+  email: joi.string().email().required(),
+  password: joi.string().min(6).required(),
 });
 
-module.exports = { schemaLogin };
+const schemaUser = joi.object({
+  displayName: joi.string().min(8).required(),
+  email: joi.string().email().required(),
+  password: joi.string().min(6).required(),
+  image: joi.string(),
+});
+
+module.exports = { schemaLogin, schemaUser };
