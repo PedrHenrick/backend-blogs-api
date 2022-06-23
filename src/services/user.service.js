@@ -3,6 +3,11 @@ const { generateJWTToken } = require('../utils/JWTToken');
 
 const errorObjectForEmail = { status: 409, message: 'User already registered' };
 
+const getAll = async () => {
+  const users = await User.findAll({ attributes: { exclude: ['password'] } });
+  return users;
+};
+
 const add = async (userInformations) => {
   try {
     const hasUserAdded = await User.create(userInformations);
@@ -19,4 +24,4 @@ const add = async (userInformations) => {
   }
 };
 
-module.exports = { add };
+module.exports = { add, getAll };
