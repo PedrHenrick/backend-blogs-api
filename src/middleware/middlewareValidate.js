@@ -1,7 +1,7 @@
 const returnArray = (object) => {
-  if(object[0]) return object;
+  if (object[0]) return object;
   return [object];
-}
+};
 
 const validateSchema = (schema) => (req, res, next) => {
   const itemsForVerification = returnArray(req.body);
