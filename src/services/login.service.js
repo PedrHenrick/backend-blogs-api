@@ -5,7 +5,7 @@ const errorObjectInvalidFields = { status: 400, message: 'Invalid fields' };
 
 const authentication = async ({ email, password }) => {
   const hasUser = await User.findOne({
-    attributes: ['id', ['displayName', 'name'], 'email'],
+    attributes: [['displayName', 'name'], 'email'],
     where: { email, password },
   });
 
