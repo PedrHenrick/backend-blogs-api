@@ -7,6 +7,7 @@ const { schemaUser } = require('../middleware/schemas');
 const userRouter = express.Router();
 
 userRouter.get('/', authenticateMiddleware, userController.getAll);
+userRouter.get('/:id', authenticateMiddleware, userController.getById);
 userRouter.post('/', validateSchema(schemaUser), userController.add);
 
 module.exports = userRouter;
