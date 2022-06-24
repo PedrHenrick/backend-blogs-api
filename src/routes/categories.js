@@ -14,5 +14,4 @@ categoriesRouter.post(
   categoriesController.add,
 );
 
-
 module.exports = categoriesRouter;
