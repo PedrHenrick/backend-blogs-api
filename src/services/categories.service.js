@@ -1,6 +1,6 @@
 const { Category } = require('../database/models');
 
-const errorObjectCategoryExist = { status: 400, message: 'Category exists' }
+const errorObjectCategoryExist = { status: 400, message: 'Category exists' };
 
 const add = async (categoryInformations) => {
   try {
