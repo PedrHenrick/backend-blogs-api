@@ -6,11 +6,13 @@ const { schemaCategory } = require('../middleware/schemas');
 
 const categoriesRouter = express.Router();
 
+categoriesRouter.get('/', authenticateMiddleware, categoriesController.getAll);
 categoriesRouter.post(
   '/',
   authenticateMiddleware,
   validateSchema(schemaCategory),
   categoriesController.add,
 );
+
 
 module.exports = categoriesRouter;
