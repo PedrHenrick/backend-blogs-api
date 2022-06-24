@@ -2,7 +2,7 @@ const { User } = require('../database/models');
 const { generateJWTToken } = require('../utils/JWTToken');
 
 const errorObjectForEmail = { status: 409, message: 'User already registered' };
-const errorObjectUserId = { status: 404, message: 'User does not exist' }
+const errorObjectUserId = { status: 404, message: 'User does not exist' };
 
 const getAll = async () => {
   const users = await User.findAll({ attributes: { exclude: ['password'] } });
@@ -10,7 +10,7 @@ const getAll = async () => {
 };
 
 const getById = async ({ id }) => {
-  const hasUser = await User.findOne({ attributes: { exclude: ['password'] }, where: { id: id } });
+  const hasUser = await User.findOne({ attributes: { exclude: ['password'] }, where: { id } });
   if (!hasUser) throw errorObjectUserId;
   return hasUser;
 };
