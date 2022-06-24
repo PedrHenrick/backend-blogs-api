@@ -25,5 +25,4 @@ const blogPostSchema = (sequelize, DataTypes) => {
   return blogPostTable;
 };
 
-
 module.exports = blogPostSchema;
