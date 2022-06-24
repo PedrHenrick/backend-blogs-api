@@ -25,7 +25,6 @@ const postCategorieSchema = (sequelize, DataTypes) => {
     });
   };
 
-
   return postCategoryTable;
 };
 
