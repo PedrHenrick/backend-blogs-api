@@ -10,6 +10,14 @@ const userSchema = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     image: DataTypes.STRING
   }, { timestamps: false });
+
+  userTable.associate = models => {
+    userTable.hasMany(models.BlogPost, {
+      foreignKey: 'id',
+      as: 'blogPosts'
+    })
+  }
+
   return userTable;
 };
 
