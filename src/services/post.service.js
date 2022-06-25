@@ -22,10 +22,10 @@ const getById = async ({ id }) => {
       { model: User, as: 'user', attributes: { exclude: ['password'] } },
       { model: Category, as: 'categories' },
     ],
-    where: { id }
+    where: { id },
   });
 
-  if(!hasPost) throw errorObjectPostId;
+  if (!hasPost) throw errorObjectPostId;
 
   return hasPost;
 };
