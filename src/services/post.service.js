@@ -10,9 +10,9 @@ const errorObjectTransaction = { status: 500, message: 'Transaction fail' };
 
 const getAll = async () => BlogPost.findAll({
   include: [
-    { model: User, as: "user", attributes: { exclude: ['password'] } },
-    { model: Category, as: "categories" },
-  ]
+    { model: User, as: 'user', attributes: { exclude: ['password'] } },
+    { model: Category, as: 'categories' },
+  ],
 });
 
 const add = async (title, content, userId, categoryIds) => {
