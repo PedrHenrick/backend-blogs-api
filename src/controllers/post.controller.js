@@ -14,8 +14,14 @@ const getById = async (req, res) => {
 const add = async (req, res) => {
   const { id } = await authenticateToken(req.headers.authorization);
   const { title, content, categoryIds } = req.body;
-  const post = await postService.add(title, content, id, categoryIds);
-  res.status(201).json(post);
+  const postAdded = await postService.add(title, content, id, categoryIds);
+  res.status(201).json(postAdded);
 };
 
-module.exports = { getAll, getById, add };
+const update = async (req, res) => {
+  const { id: idUserLogged } = await authenticateToken(req.headers.authorization);
+  const postActualized = await postService.update(req.body, idUserLogged, req.params);
+  res.status(200).json(postActualized);
+}
+
+module.exports = { getAll, getById, add, update };
