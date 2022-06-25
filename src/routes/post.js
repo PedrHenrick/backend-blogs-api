@@ -7,6 +7,7 @@ const { schemaPost } = require('../middleware/schemas');
 const postRouter = express.Router();
 
 postRouter.get('/', authenticateMiddleware, postController.getAll);
+postRouter.get('/:id', authenticateMiddleware, postController.getById);
 postRouter.post(
   '/',
   authenticateMiddleware,
