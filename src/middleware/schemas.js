@@ -21,4 +21,16 @@ const schemaCategory = joi.object({
   name: joi.string().required(),
 });
 
-module.exports = { schemaLogin, schemaUser, schemaCategory };
+const schemaPost = joi.object({
+  title: joi.string().min(1).required(),
+  content: joi.string().min(1).required(),
+  categoryIds: joi.array().min(1).required(),
+}).messages({
+  'any.required': 'Some required fields are missing',
+  'string.empty': 'Some required fields are missing',
+  'string.min': 'Some required fields are missing',
+  'array.empty': 'Some required fields are missing',
+  'array.min': 'Some required fields are missing'
+});
+
+module.exports = { schemaLogin, schemaUser, schemaCategory, schemaPost };
