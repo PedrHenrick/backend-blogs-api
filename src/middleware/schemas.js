@@ -6,10 +6,7 @@ const schemaLogin = joi.object({
   email: joi.string().email().required(),
   password: joi.string().min(6).required(),
 }).messages({
-  'any.required': errorMessage,
-  'string.empty': errorMessage,
-  'string.email': errorMessage,
-  'string.min': errorMessage,
+  '*': errorMessage,
 });
 
 const schemaUser = joi.object({
@@ -28,20 +25,14 @@ const schemaPost_post = joi.object({
   content: joi.string().min(1).required(),
   categoryIds: joi.array().min(1).required(),
 }).messages({
-  'any.required': errorMessage,
-  'string.empty': errorMessage,
-  'string.min': errorMessage,
-  'array.empty': errorMessage,
-  'array.min': errorMessage,
+  '*': errorMessage,
 });
 
 const schemaPost_update = joi.object({
   title: joi.string().min(1).required(),
   content: joi.string().min(1).required(),
 }).messages({
-  'any.required': errorMessage,
-  'string.empty': errorMessage,
-  'string.min': errorMessage,
+  '*': errorMessage,
 });
 
 module.exports = {
