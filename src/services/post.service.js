@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { BlogPost, PostCategory } = require('../database/models');
+const { BlogPost, PostCategory, User, Category } = require('../database/models');
 const categoriesService = require('./categories.service');
 const config = require('../database/config/config');
 
@@ -7,6 +7,13 @@ const sequelize = new Sequelize(config.development);
 
 const errorObjectCategoryId = { status: 400, message: '"categoryIds" not found' };
 const errorObjectTransaction = { status: 500, message: 'Transaction fail' };
+
+const getAll = async () => BlogPost.findAll({
+  include: [
+    { model: User, as: "user", attributes: { exclude: ['password'] } },
+    { model: Category, as: "categories" },
+  ]
+});
 
 const add = async (title, content, userId, categoryIds) => {
   try {
@@ -32,4 +39,4 @@ const add = async (title, content, userId, categoryIds) => {
   }
 };
 
-module.exports = { add };
+module.exports = { getAll, add };
