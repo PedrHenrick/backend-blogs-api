@@ -20,6 +20,7 @@ const add = async (userInformations) => {
     const hasUserAdded = await User.create(userInformations);
 
     const information = {
+      id: hasUserAdded.dataValues.id,
       name: hasUserAdded.dataValues.displayName,
       email: hasUserAdded.dataValues.email,
     };
