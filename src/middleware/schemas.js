@@ -1,13 +1,15 @@
 const joi = require('joi');
 
+const errorMessage = 'Some required fields are missing';
+
 const schemaLogin = joi.object({
   email: joi.string().email().required(),
   password: joi.string().min(6).required(),
 }).messages({
-  'any.required': 'Some required fields are missing',
-  'string.empty': 'Some required fields are missing',
-  'string.email': 'Some required fields are missing',
-  'string.min': 'Some required fields are missing',
+  'any.required': errorMessage,
+  'string.empty': errorMessage,
+  'string.email': errorMessage,
+  'string.min': errorMessage,
 });
 
 const schemaUser = joi.object({
@@ -26,11 +28,11 @@ const schemaPost = joi.object({
   content: joi.string().min(1).required(),
   categoryIds: joi.array().min(1).required(),
 }).messages({
-  'any.required': 'Some required fields are missing',
-  'string.empty': 'Some required fields are missing',
-  'string.min': 'Some required fields are missing',
-  'array.empty': 'Some required fields are missing',
-  'array.min': 'Some required fields are missing'
+  'any.required': errorMessage,
+  'string.empty': errorMessage,
+  'string.min': errorMessage,
+  'array.empty': errorMessage,
+  'array.min': errorMessage,
 });
 
 module.exports = { schemaLogin, schemaUser, schemaCategory, schemaPost };

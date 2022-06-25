@@ -6,7 +6,7 @@ const authenticateMiddleware = async (req, _res, next) => {
   const token = req.headers.authorization;
   if (!token) throw errorObjectEmptyToken;
   
-  const user = await authenticateToken(token);
+  await authenticateToken(token);
   next();
 };
 
