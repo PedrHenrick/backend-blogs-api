@@ -2,7 +2,7 @@ const express = require('express');
 const postController = require('../controllers/post.controller');
 const authenticateMiddleware = require('../middleware/authenticateMiddleware');
 const validateSchema = require('../middleware/middlewareValidate');
-const { schemaPost_update, schemaPost_post } = require('../middleware/schemas');
+const { schemaPostUpdate, schemaPostPost } = require('../middleware/schemas');
 
 const postRouter = express.Router();
 
@@ -11,13 +11,13 @@ postRouter.get('/:id', authenticateMiddleware, postController.getById);
 postRouter.post(
   '/',
   authenticateMiddleware,
-  validateSchema(schemaPost_post),
+  validateSchema(schemaPostPost),
   postController.add,
 );
 postRouter.put(
   '/:id',
   authenticateMiddleware,
-  validateSchema(schemaPost_update),
+  validateSchema(schemaPostUpdate),
   postController.update,
 );
 

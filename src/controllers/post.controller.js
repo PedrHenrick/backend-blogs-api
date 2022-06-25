@@ -22,6 +22,6 @@ const update = async (req, res) => {
   const { id: idUserLogged } = await authenticateToken(req.headers.authorization);
   const postActualized = await postService.update(req.body, idUserLogged, req.params);
   res.status(200).json(postActualized);
-}
+};
 
 module.exports = { getAll, getById, add, update };

@@ -20,7 +20,7 @@ const schemaCategory = joi.object({
   name: joi.string().required(),
 });
 
-const schemaPost_post = joi.object({
+const schemaPostPost = joi.object({
   title: joi.string().min(1).required(),
   content: joi.string().min(1).required(),
   categoryIds: joi.array().min(1).required(),
@@ -28,7 +28,7 @@ const schemaPost_post = joi.object({
   '*': errorMessage,
 });
 
-const schemaPost_update = joi.object({
+const schemaPostUpdate = joi.object({
   title: joi.string().min(1).required(),
   content: joi.string().min(1).required(),
 }).messages({
@@ -39,6 +39,6 @@ module.exports = {
   schemaLogin,
   schemaUser,
   schemaCategory,
-  schemaPost_post,
-  schemaPost_update
+  schemaPostPost,
+  schemaPostUpdate,
 };
