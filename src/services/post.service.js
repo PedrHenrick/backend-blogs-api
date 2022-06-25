@@ -7,6 +7,7 @@ const sequelize = new Sequelize(config.development);
 
 const errorObjectCategoryId = { status: 400, message: '"categoryIds" not found' };
 const errorObjectTransaction = { status: 500, message: 'Transaction fail' };
+const errorObjectPostId = { status: 404, message: 'Post does not exist' };
 
 const getAll = async () => BlogPost.findAll({
   include: [
@@ -14,6 +15,20 @@ const getAll = async () => BlogPost.findAll({
     { model: Category, as: 'categories' },
   ],
 });
+
+const getById = async ({ id }) => {
+  const hasPost = await BlogPost.findOne({
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories' },
+    ],
+    where: { id }
+  });
+
+  if(!hasPost) throw errorObjectPostId;
+
+  return hasPost;
+};
 
 const add = async (title, content, userId, categoryIds) => {
   try {
@@ -39,4 +54,4 @@ const add = async (title, content, userId, categoryIds) => {
   }
 };
 
-module.exports = { getAll, add };
+module.exports = { getAll, getById, add };
