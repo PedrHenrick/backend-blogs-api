@@ -6,6 +6,11 @@ const getAll = async (_req, res) => {
   res.status(200).json(allPosts);
 };
 
+const getById = async (req, res) => {
+  const postWithId = await postService.getById(req.params);
+  res.status(200).json(postWithId);
+};
+
 const add = async (req, res) => {
   const { id } = await authenticateToken(req.headers.authorization);
   const { title, content, categoryIds } = req.body;
@@ -13,4 +18,4 @@ const add = async (req, res) => {
   res.status(201).json(post);
 };
 
-module.exports = { getAll, add };
+module.exports = { getAll, getById, add };
