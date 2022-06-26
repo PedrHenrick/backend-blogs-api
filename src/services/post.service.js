@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
+const { Op } = require('sequelize');
 const { BlogPost, PostCategory, User, Category } = require('../database/models');
 const categoriesService = require('./categories.service');
 const config = require('../database/config/config');
-const { Op } = require('sequelize');
 
 const sequelize = new Sequelize(config.development);
 
@@ -26,10 +26,10 @@ const getBySearch = async ({ q: query }) => {
       ],
       where: { 
         [Op.or]: [
-          { title: { [Op.like]: `%${query}%` }},
-          { content: { [Op.like]: `%${query}%` } }
-        ]
-      }
+          { title: { [Op.like]: `%${query}%` } },
+          { content: { [Op.like]: `%${query}%` } },
+        ],
+      },
     },
   );
   return allposts;
