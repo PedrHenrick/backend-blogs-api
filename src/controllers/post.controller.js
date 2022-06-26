@@ -6,6 +6,11 @@ const getAll = async (_req, res) => {
   res.status(200).json(allPosts);
 };
 
+const getBySearch = async (req, res) => {
+  const searchedPost = await postService.getBySearch(req.query);
+  res.status(200).json(searchedPost);
+};
+
 const getById = async (req, res) => {
   const postWithId = await postService.getById(req.params);
   res.status(200).json(postWithId);
@@ -30,4 +35,4 @@ const deletePost = async (req, res) => {
   res.status(204).end();
 };
 
-module.exports = { getAll, getById, add, update, deletePost };
+module.exports = { getAll, getById, getBySearch, add, update, deletePost };
