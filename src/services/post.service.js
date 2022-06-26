@@ -67,7 +67,7 @@ const update = async (updateInformation, idUserLogged, { id }) => {
 
 const deletePost = async (idUserLogged, { id }) => {
   const post = await getById({ id });
-  if(!post) throw errorObjectPostId;
+  if (!post) throw errorObjectPostId;
   if (post.userId !== idUserLogged) throw errorObjectUserDiferent;
   
   await BlogPost.destroy({ where: { id } });
