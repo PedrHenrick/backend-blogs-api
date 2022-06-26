@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const { BlogPost, PostCategory, User, Category } = require('../database/models');
 const categoriesService = require('./categories.service');
 const config = require('../database/config/config');
+const { Op } = require('sequelize');
 
 const sequelize = new Sequelize(config.development);
 
@@ -16,6 +17,23 @@ const getAll = async () => BlogPost.findAll({
     { model: Category, as: 'categories' },
   ],
 });
+
+const getBySearch = async ({ q: query }) => {
+  const allposts = await BlogPost.findAll(
+    { include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories' },
+      ],
+      where: { 
+        [Op.or]: [
+          { title: { [Op.like]: `%${query}%` }},
+          { content: { [Op.like]: `%${query}%` } }
+        ]
+      }
+    },
+  );
+  return allposts;
+};
 
 const getById = async ({ id }) => {
   const hasPost = await BlogPost.findOne({
@@ -74,4 +92,4 @@ const deletePost = async (idUserLogged, { id }) => {
   return true;
 };
 
-module.exports = { getAll, getById, add, update, deletePost };
+module.exports = { getAll, getById, getBySearch, add, update, deletePost };
