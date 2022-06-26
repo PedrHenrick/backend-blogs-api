@@ -24,4 +24,10 @@ const update = async (req, res) => {
   res.status(200).json(postActualized);
 };
 
-module.exports = { getAll, getById, add, update };
+const deletePost = async (req, res) => {
+  const { id: idUserLogged } = await authenticateToken(req.headers.authorization);
+  await postService.deletePost(idUserLogged, req.params);
+  res.status(204).end();
+};
+
+module.exports = { getAll, getById, add, update, deletePost };
