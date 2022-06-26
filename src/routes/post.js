@@ -20,5 +20,10 @@ postRouter.put(
   validateSchema(schemaPostUpdate),
   postController.update,
 );
+postRouter.delete(
+  '/:id',
+  authenticateMiddleware,
+  postController.deletePost,
+);
 
 module.exports = postRouter;
