@@ -1,4 +1,5 @@
 const userService = require('../services/user.service');
+const { authenticateToken } = require('../utils/JWTToken');
 
 const getAll = async (_req, res) => {
   const user = await userService.getAll();
@@ -15,4 +16,10 @@ const add = async (req, res) => {
   res.status(201).json(user);
 };
 
-module.exports = { getAll, getById, add };
+const deleteMe = async (req, res) => {
+  const userLogged = await authenticateToken(req.headers.authorization);
+  await userService.deleteMe(userLogged);
+  res.status(204).end();
+};
+
+module.exports = { getAll, getById, add, deleteMe };
