@@ -65,4 +65,13 @@ const update = async (updateInformation, idUserLogged, { id }) => {
   return postUpdate;
 };
 
-module.exports = { getAll, getById, add, update };
+const deletePost = async (idUserLogged, { id }) => {
+  const post = await getById({ id });
+  if(!post) throw errorObjectPostId;
+  if (post.userId !== idUserLogged) throw errorObjectUserDiferent;
+  
+  await BlogPost.destroy({ where: { id } });
+  return true;
+};
+
+module.exports = { getAll, getById, add, update, deletePost };
