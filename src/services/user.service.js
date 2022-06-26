@@ -34,7 +34,7 @@ const add = async (userInformations) => {
 
 const deleteMe = async ({ id }) => {
   const user = await getById({ id });
-  if(!user) throw errorObjectUserId;
+  if (!user) throw errorObjectUserId;
   
   await User.destroy({ where: { id } });
   return true;
