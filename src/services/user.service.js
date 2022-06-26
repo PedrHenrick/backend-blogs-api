@@ -32,4 +32,12 @@ const add = async (userInformations) => {
   }
 };
 
-module.exports = { getAll, getById, add };
+const deleteMe = async ({ id }) => {
+  const user = await getById({ id });
+  if(!user) throw errorObjectUserId;
+  
+  await User.destroy({ where: { id } });
+  return true;
+};
+
+module.exports = { getAll, getById, add, deleteMe };
